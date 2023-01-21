@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     fetch("https://restcountries.com/v2/all")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         setCountries(data);
       });
@@ -21,9 +21,12 @@ function App() {
   const searchCountries = (countries) => {
     return countries.filter((item) => {
       return dataFilter.some((filter) => {
-        return (
-          item[filter].toString().toLowerCase().indexOf(word.toLowerCase()) > -1
-        )
+        if (item[filter]) {
+          return (
+            item[filter].toString().toLowerCase().indexOf(word.toLowerCase()) >
+            -1
+          );
+        }
       });
     });
   };
